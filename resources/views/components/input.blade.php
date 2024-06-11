@@ -1,3 +1,11 @@
 @props(['disabled' => false])
 
-<input {{ $disabled ? 'disabled' : '' }} {!! $attributes->merge(['class' => 'border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm']) !!}>
+<div class="">
+    <input
+        type="text"
+    {{ $disabled? 'disabled' : '' }}
+    {!! $attributes->merge([
+        'class' => 'w-full', // Combina las clases de Tailwind para el estilo y efectos de foco
+    ])!!}
+    />
+</div>

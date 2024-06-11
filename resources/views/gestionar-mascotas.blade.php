@@ -1,14 +1,7 @@
-
-
-
-
-
-
-
 @role('ADMINISTRADOR')
 @livewireStyles
 <x-admin-layout>
-
+    @include('components.nav')
     <div>
         @livewire('mascotas')
     </div>
@@ -16,6 +9,10 @@
 </x-admin-layout>
 
 @livewireScripts
-@endrole
+@else
+    NO ERES UN ADMINISTRADOR
+    @endrole
 
-NO ERES UN ADMINISTRADOR
+
+
+

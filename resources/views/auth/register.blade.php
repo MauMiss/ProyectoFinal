@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Registro de Usuario</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <!-- Agrega los estilos de Tailwind CSS si aún no los has incluido -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<body>
 
 <x-guest-layout>
+    @include('components.nav')
 
-    <div class="flex flex-col md:flex-row justify-center items-center md:mt-8">
+    <div class="flex flex-col md:flex-row justify-center items-center">
         <!-- Formulario de Registro -->
         <div class="md:w-[60%] w-[80%] flex justify-center md:order-1 order-2 mt-4 md:mt-0">
             <div class="bg-[#BFEFFB] p-8 rounded-sm shadow-lg w-full md:w-1/2 text-[#545454]">
@@ -173,9 +164,6 @@
             </div>
         </div>
     </div>
+    @include('components.footer')
 
 </x-guest-layout>
-
-</body>
-</html>
-

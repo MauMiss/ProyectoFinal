@@ -11,14 +11,10 @@
     <h3 class="font-semibold text-2xl">Mascotas del cliente</h3>
 
         <div class="mb-2">
-            <label for="filter">Buscar por nombre</label>
-            <div class="flex gap-3">
-                <input class="c-input" type="text" placeholder="Ingrese el nombre de mascota" wire:model.live="filter" required>
-                <button class="bg-dark text-white text-nowrap py-1 px-3 rounded" wire:click="search()"><i class="fa fa-search"></i> Buscar </button>
+            <div class="flex ">
+                <input class=" bg-[#BFEFFB] border-none rounded-lg w-80" type="text" placeholder="Ingrese el nombre" wire:model.live="filter" required>
             </div>
         </div>
-
-        <hr class="mt-3 mb-3 border-cyan-800">
 
         <div class="overflow-x-auto h-96 bg-[#BFEFFB]">
             <table class="min-w-full rounded-lg">
@@ -39,19 +35,27 @@
                 <tbody>
                 @foreach ($mascotas as $mascota)
                     <tr class="hover:bg-gray-100">
-                        <td class="py-2 px-4">{{ $mascota->nombre }}</td>
-                        <td class="py-2 px-4">{{ $mascota->especie }}</td>
-                        <td class="py-2 px-4">{{ $mascota->raza }}</td>
-                        <td class="py-2 px-4">{{ $mascota->sexo }}</td>
-                        <td class="py-2 px-4">{{ $mascota->color }}</td>
-                        <td class="py-2 px-4">{{ $mascota->fecha_nacimiento }}</td>
-                        <td class="py-2 px-4">{{ $mascota->tipo }}</td>
-                        <td class="py-2 px-4">{{ $mascota->user->name }}</td>
-                        <td class="py-2 px-4">{{ $mascota->senas_particulares }}</td>
-                        <td class="py-2 px-4">
-                            <div class="flex justify-end gap-1">
-                                <a href="/ver-cartilla/{{ $mascota->id }}" class="bg-[#823E70] text-white py-1 px-3 rounded"><i class="fa fa-note" aria-hidden="true"></i> Ver Cartilla</a>
+                        <td class="py-2 px-2 h-2">{{ $mascota->nombre }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->especie }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->raza }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->sexo }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->color }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->fecha_nacimiento }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->tipo }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->user->name }}</td>
+                        <td class="py-2 px-2 h-2">{{ $mascota->senas_particulares }}</td>
+                        <td class="py-2 px-2 h-10 ">
+                            <div class="text-center">
+                                <div class="rounded h-10 bg-[#823E70] ">
+                                    <a href="/ver-cartilla/{{ $mascota->id }}" class="text-white py-1 px-3"><i class="fa fa-note" aria-hidden="true"></i> Ver Cartilla</a>
+                                </div>
+
+                                <div class="mt-3 bg-[#EFBBE1] text-white py-1 px-2 rounded text-xs h-10">
+                                    <button class="" wire:click="delete({{ $mascota->id }})">Eliminar Mascota</button>
+                                </div>
+
                             </div>
+
                         </td>
                     </tr>
                 @endforeach

@@ -30,7 +30,7 @@ class Usuarios extends Component
         if(!$this->filter){
             $this->filter = '';
         }
-        return User::where('name', 'like', $this->filter . '%')->paginate(10);
+        return User::where('name', 'like', $this->filter . '%')->paginate(7);
     }
 
     public function delete($id)

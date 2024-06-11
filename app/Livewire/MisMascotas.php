@@ -16,6 +16,7 @@ class MisMascotas extends Component
     public $filter, $title, $imagen;
     public $id, $nombre, $especie, $raza, $sexo, $color, $fecha_nacimiento, $tipo, $senas_particulares;
     public $isOpen = 0;
+    public $fotoActual;
 
     public function render()
     {
@@ -113,5 +114,30 @@ class MisMascotas extends Component
             session()->flash('error', ($this->id ? 'No se pudo actualizar la Mascota' : 'No se pudo crear el Mascota') . '. ' . $th->getMessage());
         }
     }
+
+
+
+    public function edit($id)
+    {
+        // Encuentra la mascota por su ID
+        $mascota = Mascota::findOrFail($id);
+
+        // Cargar los datos de la mascota en las variables del componente
+        $this->id = $id;
+        $this->nombre = $mascota->nombre;
+        $this->especie = $mascota->especie;
+        $this->raza = $mascota->raza;
+        $this->sexo = $mascota->sexo;
+        $this->color = $mascota->color;
+        $this->fecha_nacimiento = $mascota->fecha_nacimiento;
+        $this->tipo = $mascota->tipo;
+        $this->senas_particulares = $mascota->senas_particulares;
+        $this->fotoActual = $mascota->foto; // Para mantener la referencia de la foto actual
+
+        // Abre el modal de actualización
+        $this->title = 'Actualizar Mascota';
+        $this->openModal();
+    }
+
 
 }

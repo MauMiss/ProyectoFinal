@@ -33,7 +33,21 @@ class VerMascotas extends Component
         if(!$this->filter){
             $this->filter = '';
         }
-        return Mascota::where('user_id', $this->id)->where('nombre', 'like', $this->filter . '%')->paginate(10);
+        return Mascota::where('user_id', $this->id)->where('nombre', 'like', $this->filter . '%')->paginate(3);
+    }
+
+    public function delete($id)
+    {
+        $user = Mascota::find($id);
+
+        if ($user) {
+            $user->delete();
+            $this->render();
+
+            session()->flash('success', 'Mascota eliminado.');
+        } else {
+            session()->flash('error', 'El Mascota no pudo ser encontrado.');
+        }
     }
 
 

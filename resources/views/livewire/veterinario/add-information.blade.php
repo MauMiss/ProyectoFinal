@@ -4,8 +4,8 @@
         <form class="w-full">
             <input type="hidden" wire:model="idRegistro">
 
-            <div class="mb-4">
-                <select class="w-full border-b-2 border-zinc-400 focus:border-zinc-600 outline-none bg-transparent appearance-none" wire:model="tratamiento" id="tratamiento" required>
+            <div class="mb-4 border-b-2 border-[#545454]">
+                <select class="w-full border-none border-zinc-400 focus:border-zinc-600 outline-none bg-transparent appearance-none" wire:model="tratamiento" id="tratamiento" required>
                     <option value="" disabled selected>Tipo de Tratamiento</option>
                     <option value="vacuna">Vacuna</option>
                     <option value="desparasitacion">Desparacitación</option>
@@ -37,8 +37,8 @@
             </div>
 
             <div class="flex justify-between">
-                <button class="bg-[#EFBBE1] text-white py-2 px-4 rounded-lg" type="button" wire:click.prevent="closeModal()">Cancelar</button>
-                <button class="bg-[#823E70] text-white py-2 px-4 rounded-lg" type="button" wire:click.prevent="store()">Guardar</button>
+                <button class="bg-[#EFBBE1] text-white py-2 px-4 " type="button" wire:click.prevent="closeModal()">Cancelar</button>
+                <button class="bg-[#823E70] text-white py-2 px-4" type="button" wire:click.prevent="store()">Guardar</button>
             </div>
         </form>
     </div>

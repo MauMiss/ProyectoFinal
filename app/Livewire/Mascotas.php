@@ -33,7 +33,7 @@ class Mascotas extends Component
         if(!$this->filter){
             $this->filter = '';
         }
-        return Mascota::where('nombre', 'like', $this->filter . '%')->paginate(10);
+        return Mascota::where('nombre', 'like', $this->filter . '%')->paginate(6);
     }
 
     public function delete($id)

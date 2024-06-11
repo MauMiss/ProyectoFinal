@@ -1,7 +1,6 @@
 
 
-<div class="bg-cover bg-center h-full bg-[#AADAE6] bg-opacity-[70%] w-full">
-    @include('components.nav')
+<div class="bg-cover bg-center h-full w-full">
 
 
 
@@ -11,7 +10,7 @@
 
 
     @if (session()->has('success'))
-        <div class="bg-success text-white p-2">{{ session('success') }}</div>
+        <div class="bg-[#823E70] text-center text-white p-2">{{ session('success') }}</div>
     @endif
 
     @if (session()->has('error'))
@@ -81,7 +80,7 @@
                             <h3 class="text-[#545454] text-opacity-50 uppercase text-xl font-bold md:block hidden">{{ $title }}</h3>
                         </div>
                         @if (auth()->user()->rol == 'VETERINARIO')
-                            <button class="bg-success text-white text-nowrap py-1 px-3 rounded" wire:click="create()"><i
+                            <button class="bg-[#823E70] text-white text-nowrap py-1 px-3 rounded mt-3 md:mt-0" wire:click="create()"><i
                                     class="fa fa-plus"></i> Agregar Información</button>
                         @endif
                     </div>

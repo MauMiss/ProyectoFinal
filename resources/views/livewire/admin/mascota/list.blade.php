@@ -1,7 +1,7 @@
 <div class="container w-full">
 
     @if (session()->has('success'))
-        <div class="bg-success text-white p-2">{{ session('success') }}</div>
+        <div class="bg-[#823E70] text-center text-white p-2">{{ session('success') }}</div>
     @endif
 
     @if (session()->has('error'))
@@ -12,69 +12,70 @@
         @include('livewire.admin.mascota.create')
     @else
 
-        <h3 class="font-semibold text-2xl">Lista de mascotas</h3>
 
-        <div class="mb-2">
-            <label for="filter">Buscar por nombre</label>
-            <div class="flex gap-3">
-                <input class="c-input" type="text" placeholder="Ingrese el nombre de mascota" wire:model="filter" required>
-                <button class="bg-dark text-white text-nowrap py-1 px-3 rounded" wire:click="search()"><i class="fa fa-search"></i> Buscar </button>
+        <h3 class="font-semibold text-2xl text-center">Lista de mascotas</h3>
+
+            <div class="mb-2">
+                <div class="flex ">
+                    <input class=" bg-[#BFEFFB] border-none rounded-lg w-80" type="text" placeholder="Ingrese el nombre" wire:model.live="filter" required>
+                </div>
             </div>
-        </div>
 
-        <hr class="mt-3 mb-3 border-cyan-800">
-
-        <div class="overflow-auto">
-
-            <table class="w-full mt-3">
-                <thead class="border-b border-gray-500">
-                    <th class="text-left p-1">Nombre</th>
-                    <th class="text-left p-1">Especie</th>
-                    <th class="text-left p-1">Raza</th>
-                    <th class="text-left p-1">Sexo</th>
-                    <th class="text-left p-1">Color</th>
-                    <th class="text-left p-1">Fecha Nacimiento</th>
-                    <th class="text-left p-1">Tipo</th>
-                    <th class="text-left p-1">Propietario</th>
-                    <th class="text-left p-1">Señas particulares</th>
-                    <th></th>
+        <div class="overflow-x-auto h-96 bg-[#BFEFFB]">
+            <table class="min-w-full rounded-lg">
+                <thead class="bg-[#EFBBE1]">
+                <tr>
+                    <th class="py-2 px-4 text-left">Nombre</th>
+                    <th class="py-2 px-4 text-left">Especie</th>
+                    <th class="py-2 px-4 text-left">Raza</th>
+                    <th class="py-2 px-4 text-left">Sexo</th>
+                    <th class="py-2 px-4 text-left">Color</th>
+                    <th class="py-2 px-4 text-left">Fecha Nacimiento</th>
+                    <th class="py-2 px-4 text-left">Tipo</th>
+                    <th class="py-2 px-4 text-left">Propietario</th>
+                    <th class="py-2 px-4 text-left">Señas particulares</th>
+                    <th class="py-2 px-4 text-left">Acciones</th>
+                </tr>
                 </thead>
                 <tbody>
+                @foreach ($mascotas as $mascota)
+                    <tr class="">
+                        <td class="py-2 px-4 h-2">{{ $mascota->nombre }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->especie }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->raza }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->sexo }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->color }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->fecha_nacimiento }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->tipo }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->user->name }}</td>
+                        <td class="py-2 px-4 h-2">{{ $mascota->senas_particulares }}</td>
+                        <td class="py-2 px-4 h-2 bg-red-500">
 
-                    @foreach ($mascotas as $mascota)
-                    <tr class="border-b border-gray-500 hover:bg-gray-100">
-                        <td class="p-1">{{ $mascota->nombre }}</td>
-                        <td class="p-1">{{ $mascota->especie }}</td>
-                        <td class="p-1">{{ $mascota->raza }}</td>
-                        <td class="p-1">{{ $mascota->sexo }}</td>
-                        <td class="p-1">{{ $mascota->color }}</td>
-                        <td class="p-1">{{ $mascota->fecha_nacimiento }}</td>
-                        <td class="p-1">{{ $mascota->tipo }}</td>
-                        <td class="p-1">{{ $mascota->user->name }}</td>
-                        <td class="p-1">{{ $mascota->senas_particulares }}</td>
-                        <td class="p-1">
                             <div class="flex justify-end gap-1">
-                                <button class="bg-primary text-white py-1 px-3 rounded" wire:click="edit({{ $mascota->id }})"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </button>
-                                <button class="bg-danger text-white py-1 px-3 rounded" wire:click="delete({{ $mascota->id }})"><i class="fa fa-trash" aria-hidden="true"></i> </button>
+                                <button class="bg-[#823E70] text-white py-1 px-3 rounded" wire:click="edit({{ $mascota->id }})">
+                                    <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                </button>
+                                <button class="bg-[#EFBBE1] text-white py-1 px-3 rounded" wire:click="delete({{ $mascota->id }})">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
-                    @endforeach
-
+                @endforeach
                 </tbody>
             </table>
 
-            @if ($mascotas->count())
-            <div class="mt-4">
-                {{ $mascotas->links() }}
-            </div>
-            @else
-            <p>No hay mascotas disponibles.</p>
-            @endif
-
         </div>
 
-    @endif
 
+            @if ($mascotas->count())
+                <div class="mt-4">
+                    {{ $mascotas->links() }}
+                </div>
+            @else
+                <p class="px-4 py-2">No hay mascotas disponibles.</p>
+            @endif
+
+    @endif
 
 </div>

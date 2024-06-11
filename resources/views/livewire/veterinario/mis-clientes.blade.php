@@ -1,4 +1,5 @@
-<div class="container w-full">
+
+<div class="px-20 w-full">
 
     @if (session()->has('success'))
         <div class="bg-success text-white p-2">{{ session('success') }}</div>
@@ -12,15 +13,15 @@
         @include('livewire.admin.usuario.create')
     @else
 
-        <h3 class="font-semibold text-2xl">Clientes</h3>
+        <h3 class="font-semibold text-2xl text-center">Clientes</h3>
 
-        <div class="mb-2">
-            <label for="filter">Buscar por nombre</label>
-            <div class="flex gap-3">
-                <input class="c-input" type="text" placeholder="Ingrese el nombre" wire:model="filter" required>
-                <button class="bg-dark text-white text-nowrap py-1 px-3 rounded" wire:click="search()"><i class="fa fa-search"></i> Buscar </button>
+
+            <div class="mb-2">
+                <div class="flex ">
+                    <input class=" bg-[#BFEFFB] border-none rounded-lg w-80" type="text" placeholder="Ingrese el nombre" wire:model.live="filter" required>
+                </div>
             </div>
-        </div>
+
 
 
             <div class="overflow-x-auto h-96 bg-[#BFEFFB]">
@@ -31,18 +32,18 @@
                         <th class="py-2 px-4 text-left">Correo</th>
                         <th class="py-2 px-4 text-left">Dirección</th>
                         <th class="py-2 px-4 text-left">Teléfono</th>
-                        <th class="py-2 px-4 text-left">Ver Mascotas</th>
+                        <th class="py-2 px-4 text-center">Ver Mascotas</th>
                     </tr>
                     </thead>
                     <tbody >
                     @foreach ($usuarios as $usuario)
-                        <tr class="">
+                        <tr>
                             <td class="py-2 px-4 h-2">{{ $usuario->name }}</td>
                             <td class="py-2 px-4 h-2">{{ $usuario->email }}</td>
                             <td class="py-2 px-4 h-2">{{ $usuario->direccion }}</td>
                             <td class="py-2 px-4 h-2">{{ $usuario->telefono }}</td>
                             <td class="py-2 px-4 h-2">
-                                <div class="flex justify-end gap-1">
+                                <div class="flex justify-center gap-1">
                                     <a class="bg-[#823E70] text-white py-1 px-3 rounded" href="/ver-mascotas/{{ $usuario->id }}">Ver mascotas</a>
                                 </div>
                             </td>
@@ -50,6 +51,13 @@
                     @endforeach
                     </tbody>
                 </table>
+                @if ($usuarios->count())
+                    <div class="mt-4">
+                        {{ $usuarios->links() }}
+                    </div>
+                @else
+                    <p>No hay usuarios disponibles.</p>
+                @endif
             </div>
 
         @endif

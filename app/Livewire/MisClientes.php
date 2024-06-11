@@ -30,7 +30,7 @@ class MisClientes extends Component
         if(!$this->filter){
             $this->filter = '';
         }
-        return User::where('rol', 'USUARIO')->where('name', 'like', $this->filter . '%')->paginate(10);
+        return User::where('rol', 'USUARIO')->where('name', 'like', $this->filter . '%')->paginate(8);
     }
 
     public function delete($id)

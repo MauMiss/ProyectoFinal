@@ -1,29 +1,11 @@
-<div class="container w-full">
-
+<div class="container w-full text-[#545454]">
     @if (session()->has('success'))
-
-        <div id="alertModal" class="modal fixed inset-0 bg-[#AADAE6] bg-opacity-50 flex items-center justify-center" style="z-index: 9999;">
-            <div class="bg-[#EFBBE1] p-3 rounded-lg shadow-lg max-w-sm w-60 relative">
-                <div class="flex mb-2">
-                    <div class="w-[60%] flex justify-end">
-                        <img src="{{ asset('storage/GUF.gif') }}" alt="GIF" width="35%" height="10%">
-                    </div>
-                    <div class=" w-[40%] flex justify-end">
-                        <button id="closeButton"><i class="fa-solid fa-xmark text-2xl"></i></button>
-                    </div>
-                </div>
-                <div>
-                    <p>El clima de nuestro estado es idóneo para las pulgas,
-                        garrapatas, moscos, moscas y otros insectos; debido a
-                        esto es importante proteger y controlar la cantidad de
-                        ectoparásitos en tu mascota.</p>
-                </div>
-            </div>
-        </div>
-
+        <div class="bg-success text-white p-2">{{ session('success') }}</div>
     @endif
 
-    @if (session()->has('error'))
+
+
+@if (session()->has('error'))
         <div class="bg-danger text-white p-2">{{ session('error') }}</div>
     @endif
 
@@ -41,11 +23,12 @@
 
 
 
-        <div class="overflow-auto">
+        <div class="overflow-auto text-[#545454]">
 
             <div class="grid md:grid-cols-3 grid-cols-2 md:gap-10 gap-4 mt-4 w-[100%]">
                 @foreach($mascotas as $mascota)
                     <div class="bg-[#BFEFFB] rounded-md shadow-md md:h-full">
+
                         <div class="h-32 md:relative">
                             <img class="rounded-t-md h-full w-full object-cover hover:brightness-50" src="{{ asset('storage/' . $mascota->foto) }}" alt="{{ $mascota->nombre }}">
                             <a href="/ver-cartilla/{{ $mascota->id }}" class="md:absolute inset-0 flex items-center justify-center bg-white bg-opacity-70 opacity-0 hover:opacity-100 transition-opacity duration-300 text-2xl">
@@ -53,14 +36,18 @@
                             </a>
                         </div>
 
-                        <div class="mt-2 flex justify-between flex-col md:flex-row items-center p-2">
-                            <h2 class="text-lg font-bold">{{ $mascota->nombre }}</h2>
-                            @if($mascota->especie == 'Perro')
-                                <button><i class="fa-solid fa-bone text-2xl"></i></button>
-                            @elseif($mascota->especie == 'Gato')
-                                <button><i class="fa-solid fa-fish text-2xl"></i></button>
-                            @endif
-                            <p class="text-gray-600">{{ $mascota->sexo }}</p>
+                        <div class="mt-1 flex justify-between flex-col md:flex-row items-center p-2">
+
+                            <div><h2 class="text-lg font-bold">{{ $mascota->nombre }}</h2></div>
+                            <div class="space-x-2"> <i class=" fa-solid fa-pen " wire:click="edit({{ $mascota->id }})">
+                                </i>
+                                @if($mascota->especie == 'Perro')
+                                    <button><i class="fa-solid fa-bone text-2xl"></i></button>
+                                @elseif($mascota->especie == 'Gato')
+                                    <button><i class="fa-solid fa-fish text-2xl"></i></button>
+                                @endif</div>
+                            <div><p class="text-gray-600 ">{{ $mascota->sexo }}</p></div>
+
                         </div>
                     </div>
                 @endforeach
@@ -77,11 +64,7 @@
 
         </div>
 
-
-
-
     @endif
-
 
 </div>
 
